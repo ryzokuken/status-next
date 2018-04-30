@@ -9,12 +9,12 @@ export default class extends React.Component {
       filter: 'ALL'
     };
 
-    setInterval(() => {
-      fetch('http://localhost:8000')
-        .then(res => res.json())
-        .then(res => this.setState({ data: res }))
-        .catch(err => console.error(err));
-    }, 1000);
+    // setInterval(() => {
+    //   fetch('http://localhost:8000')
+    //     .then(res => res.json())
+    //     .then(res => this.setState({ data: res }))
+    //     .catch(err => console.error(err));
+    // }, 1000);
 
     this.setFilter = this.setFilter.bind(this);
   }
