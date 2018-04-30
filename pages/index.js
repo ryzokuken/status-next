@@ -12,7 +12,8 @@ export default class extends React.Component {
     setInterval(() => {
       fetch('http://localhost:8000')
         .then(res => res.json())
-        .then(res => this.setState({ data: res }));
+        .then(res => this.setState({ data: res }))
+        .catch(err => console.error(err));
     }, 1000);
 
     this.setFilter = this.setFilter.bind(this);
@@ -23,7 +24,9 @@ export default class extends React.Component {
   }
 
   render() {
-    const arr = Object.keys(this.state.data).map(key => this.state.data[key]);
+    const arr = Object.keys(this.state.data)
+      .map(key => this.state.data[key])
+      .sort((a, b) => a.local.port - b.local.port);
     const fArr = this.state.filter === 'ALL' ? arr : arr.filter(i => i.state === this.state.filter);
 
     return (
