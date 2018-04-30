@@ -16,6 +16,31 @@ export default class extends React.Component {
   }
 
   render() {
-    return <h1>{JSON.stringify(this.state.data)}</h1>;
+    return (
+      <table>
+        <tbody>
+          <tr>
+            <th>Protocol</th>
+            <th>Local: Port</th>
+            <th>Local: Address</th>
+            <th>Remote: Port</th>
+            <th>Remote: Address</th>
+            <th>State</th>
+            <th>PID</th>
+          </tr>
+          {Object.keys(this.state.data).map((key, index) => (
+            <tr key={index}>
+              <td>{this.state.data[key].protocol}</td>
+              <td>{this.state.data[key].local.port}</td>
+              <td>{this.state.data[key].local.address}</td>
+              <td>{this.state.data[key].remote.address}</td>
+              <td>{this.state.data[key].remote.address}</td>
+              <td>{this.state.data[key].state}</td>
+              <td>{this.state.data[key].pid}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   }
 }
