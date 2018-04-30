@@ -1,5 +1,6 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
+import io from 'socket.io-client';
 
 export default class extends React.Component {
   constructor(props) {
@@ -18,6 +19,17 @@ export default class extends React.Component {
 
     this.setFilter = this.setFilter.bind(this);
   }
+
+  componentDidMount() {
+    this.socket = io('http://localhost:8000');
+    this.socket.on('status', ({ key, data }) => {
+      const sData = this.state.data;
+      sData[key] = data;
+      this.setState({ data: sData });
+    });
+  }
+
+  handleStatus(data) {}
 
   setFilter(evt) {
     this.setState({ filter: evt.target.value });
