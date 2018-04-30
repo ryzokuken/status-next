@@ -29,6 +29,11 @@ export default class extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.socket.off('message', this.handleMessage);
+    this.socket.close();
+  }
+
   handleStatus(data) {}
 
   setFilter(evt) {
